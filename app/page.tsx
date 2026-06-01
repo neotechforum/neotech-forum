@@ -479,8 +479,30 @@ export default function HomePage() {
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'radial-gradient(rgba(0,170,255,.038) 1px,transparent 1px)', backgroundSize: '38px 38px' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse 65% 55% at 62% 50%,rgba(201,168,76,.055) 0%,transparent 68%)' }} />
 
+        <style>{`
+          @media (max-width: 768px) {
+            .spk-layout {
+              flex-direction: column !important;
+              justify-content: flex-start !important;
+              align-items: flex-start !important;
+              padding-top: 6rem !important;
+              gap: 2rem !important;
+              overflow-y: auto !important;
+            }
+            .spk-left { max-width: 100% !important; width: 100% !important; }
+            .spk-left h2 { font-size: 1.4rem !important; margin-bottom: 1.2rem !important; }
+            .spk-left > div { margin-bottom: 0 !important; }
+            .spk-cards {
+              width: min(280px, 78vw) !important;
+              height: 380px !important;
+              align-self: center !important;
+              margin: 0 auto !important;
+            }
+          }
+        `}</style>
+
         {/* Layout: left text / right stack */}
-        <div style={{
+        <div className="spk-layout" style={{
           position: 'relative', zIndex: 2, height: '100%',
           display: 'flex', alignItems: 'center',
           maxWidth: '1280px', margin: '0 auto',
@@ -489,7 +511,7 @@ export default function HomePage() {
         }}>
 
           {/* ─ Left panel ─ */}
-          <div style={{ flex: '0 0 auto', maxWidth: '340px' }}>
+          <div className="spk-left" style={{ flex: '0 0 auto', maxWidth: '340px' }}>
             <span ref={spkLabel} style={{ ...labelSty, marginBottom: '1.5rem', display: 'block' }}>Les Intervenants</span>
             <h2 ref={spkTitle} style={{
               fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.5rem,2.8vw,2.3rem)',
@@ -519,7 +541,7 @@ export default function HomePage() {
           </div>
 
           {/* ─ Right: card stack ─ */}
-          <div ref={spkCards} style={{
+          <div ref={spkCards} className="spk-cards" style={{
             position: 'relative',
             width: 'clamp(300px,30vw,380px)',
             height: 'clamp(430px,56vh,560px)',
