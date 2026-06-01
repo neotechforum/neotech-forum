@@ -216,6 +216,7 @@ export default function GlobeSection() {
     /* ── Pings HTML — créés en synchrone, positionnés dans le RAF ──── */
     EVENTS.forEach(ev => {
       const el = document.createElement('div')
+      el.className = 'globe-ping'
       Object.assign(el.style, {
         position: 'absolute', pointerEvents: 'none', zIndex: '20',
         opacity: '0', transition: 'opacity 0.45s ease',
@@ -522,44 +523,90 @@ export default function GlobeSection() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      style={{ position: 'relative', height: '100svh', overflow: 'hidden', background: '#020810' }}
-    >
-      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse 70% 80% at 58% 50%, rgba(0,40,120,.15) 0%, transparent 68%)' }} />
+    <>
+      <style>{`
+        .globe-ping { pointer-events: none; }
+        @media (max-width: 768px) {
+          .globe-ping { display: none !important; }
+          .globe-left-panel {
+            top: 5.5rem !important;
+            transform: none !important;
+            left: 1.5rem !important;
+            max-width: calc(100vw - 3rem) !important;
+            background: rgba(2,8,16,0.72);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 1rem 1.2rem !important;
+          }
+          .globe-left-panel h2 { font-size: 1.35rem !important; margin-bottom: .4rem !important; }
+          .globe-left-panel p  { font-size: .78rem !important; margin-bottom: 0 !important; }
+          .globe-destinations  { display: none !important; }
+          .globe-scroll-hint   { display: none !important; }
+          .globe-mobile-cities { display: flex !important; }
+        }
+        .globe-mobile-cities { display: none; }
+      `}</style>
 
-      <div ref={mountRef} style={{ position: 'absolute', inset: 0 }} />
+      <section
+        ref={sectionRef}
+        style={{ position: 'relative', height: '100svh', overflow: 'hidden', background: '#020810' }}
+      >
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
+          background: 'radial-gradient(ellipse 70% 80% at 58% 50%, rgba(0,40,120,.15) 0%, transparent 68%)' }} />
 
-      {/* Left panel */}
-      <div style={{ position: 'absolute', left: 'clamp(2rem,5.5vw,6.5rem)', top: '50%', transform: 'translateY(-50%)', zIndex: 10, maxWidth: '280px', pointerEvents: 'none' }}>
-        <span style={{ display: 'block', fontFamily: 'var(--font-body,Inter)', fontSize: '.65rem', letterSpacing: '.3em', color: GOLD, textTransform: 'uppercase', marginBottom: '1.1rem' }}>
-          Expansion mondiale
-        </span>
-        <h2 style={{ fontFamily: 'var(--font-heading,"Space Grotesk")', fontSize: 'clamp(1.5rem,2.8vw,2.2rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-.02em', margin: '0 0 1.1rem', color: '#fff' }}>
-          5 villes.<br /><span style={{ color: GOLD }}>5 rendez-vous.</span>
-        </h2>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: '.83rem', color: 'rgba(255,255,255,.36)', lineHeight: 1.76, marginBottom: '2rem' }}>
-          NeoTech Forum investit les capitales mondiales de la finance et de la tech.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
-          {EVENTS.map((ev, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '.75rem', padding: '.4rem 0', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
-              <span style={{ fontSize: '.88rem' }}>{ev.flag}</span>
-              <div style={{ flex: 1 }}>
-                <span style={{ fontFamily: 'var(--font-heading)', fontSize: '.78rem', color: '#fff', display: 'block', lineHeight: 1.2 }}>{ev.name}</span>
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '.62rem', color: 'rgba(255,255,255,.26)', letterSpacing: '.04em' }}>{ev.date}</span>
+        <div ref={mountRef} style={{ position: 'absolute', inset: 0 }} />
+
+        {/* Left panel — desktop: centré verticalement / mobile: en haut */}
+        <div className="globe-left-panel" style={{ position: 'absolute', left: 'clamp(2rem,5.5vw,6.5rem)', top: '50%', transform: 'translateY(-50%)', zIndex: 10, maxWidth: '280px', pointerEvents: 'none' }}>
+          <span style={{ display: 'block', fontFamily: 'var(--font-body,Inter)', fontSize: '.65rem', letterSpacing: '.3em', color: GOLD, textTransform: 'uppercase', marginBottom: '1.1rem' }}>
+            Expansion mondiale
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-heading,"Space Grotesk")', fontSize: 'clamp(1.5rem,2.8vw,2.2rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-.02em', margin: '0 0 1.1rem', color: '#fff' }}>
+            5 villes.<br /><span style={{ color: GOLD }}>5 rendez-vous.</span>
+          </h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '.83rem', color: 'rgba(255,255,255,.36)', lineHeight: 1.76, marginBottom: '2rem' }}>
+            NeoTech Forum investit les capitales mondiales de la finance et de la tech.
+          </p>
+          {/* Destinations — desktop only */}
+          <div className="globe-destinations" style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
+            {EVENTS.map((ev, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '.75rem', padding: '.4rem 0', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
+                <span style={{ fontSize: '.88rem' }}>{ev.flag}</span>
+                <div style={{ flex: 1 }}>
+                  <span style={{ fontFamily: 'var(--font-heading)', fontSize: '.78rem', color: '#fff', display: 'block', lineHeight: 1.2 }}>{ev.name}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '.62rem', color: 'rgba(255,255,255,.26)', letterSpacing: '.04em' }}>{ev.date}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Scroll hint */}
-      <div style={{ position: 'absolute', top: 'clamp(5rem,8vh,6rem)', right: 'clamp(2rem,4vw,3.5rem)', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '7px' }}>
-        <div style={{ width: '1px', height: '40px', background: `linear-gradient(to bottom,${GOLD}44,transparent)` }} />
-        <span style={{ fontFamily: 'var(--font-body)', fontSize: '.52rem', letterSpacing: '.2em', color: 'rgba(255,255,255,.18)', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
+        {/* Scroll hint */}
+        <div className="globe-scroll-hint" style={{ position: 'absolute', top: 'clamp(5rem,8vh,6rem)', right: 'clamp(2rem,4vw,3.5rem)', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '7px' }}>
+          <div style={{ width: '1px', height: '40px', background: `linear-gradient(to bottom,${GOLD}44,transparent)` }} />
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: '.52rem', letterSpacing: '.2em', color: 'rgba(255,255,255,.18)', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
+        </div>
+      </section>
+
+      {/* Destinations — mobile uniquement, sous le globe */}
+      <div className="globe-mobile-cities" style={{
+        background: '#020810', borderTop: '1px solid rgba(201,168,76,.12)',
+        flexDirection: 'column', gap: 0,
+        padding: '2rem clamp(1.5rem,5vw,2.5rem) 2.5rem',
+      }}>
+        <span style={{ display: 'block', fontFamily: 'var(--font-body,Inter)', fontSize: '.6rem', letterSpacing: '.28em', color: GOLD, textTransform: 'uppercase', marginBottom: '1.4rem' }}>
+          Les villes
+        </span>
+        {EVENTS.map((ev, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '.75rem 0', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
+            <span style={{ fontSize: '1.2rem' }}>{ev.flag}</span>
+            <div style={{ flex: 1 }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '.88rem', color: '#fff', display: 'block', lineHeight: 1.3 }}>{ev.name}</span>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: '.68rem', color: 'rgba(255,255,255,.3)', letterSpacing: '.06em' }}>{ev.date}</span>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </>
   )
 }
