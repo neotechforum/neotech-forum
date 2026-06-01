@@ -656,11 +656,38 @@ export default function HomePage() {
           </div>
         ))}
 
+        <style>{`
+          @media (max-width: 768px) {
+            .prog-content {
+              justify-content: flex-end !important;
+              padding: 0 1.2rem 2.5rem !important;
+              max-width: 100% !important;
+            }
+            .prog-tag {
+              position: absolute !important;
+              top: 5.2rem !important;
+              left: 1.2rem !important;
+              margin-bottom: 0 !important;
+            }
+            .prog-bubble {
+              background: rgba(2,11,24,0.80) !important;
+              backdrop-filter: blur(14px) !important;
+              -webkit-backdrop-filter: blur(14px) !important;
+              border: 1px solid rgba(255,255,255,.1) !important;
+              border-radius: 10px !important;
+              padding: 1.2rem 1.4rem !important;
+            }
+            .prog-bubble h3 { font-size: 1.45rem !important; margin-bottom: .7rem !important; }
+            .prog-bubble p  { font-size: .82rem !important; margin-bottom: .9rem !important; }
+          }
+        `}</style>
+
         {/* Content panels — stacked */}
         {PROG.map((step, i) => (
           <div
             key={i}
             ref={el => { progContentRefs.current[i] = el }}
+            className="prog-content"
             style={{
               position: 'absolute', inset: 0, zIndex: 3,
               display: 'flex', flexDirection: 'column', justifyContent: 'center',
@@ -670,7 +697,7 @@ export default function HomePage() {
             }}
           >
             {/* Step tag + time */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '2rem' }}>
+            <div className="prog-tag" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '2rem' }}>
               <span style={{ fontFamily: 'var(--font-body)', fontSize: '.62rem', letterSpacing: '.28em', color: step.accent, textTransform: 'uppercase' }}>
                 {step.tag}
               </span>
@@ -680,24 +707,22 @@ export default function HomePage() {
               </span>
             </div>
 
-            {/* Title — line-break friendly */}
-            <h3 style={{ fontFamily: 'var(--font-heading,"Space Grotesk")', fontSize: 'clamp(2rem,4.5vw,4rem)', fontWeight: 300, lineHeight: 1.08, letterSpacing: '-.025em', margin: '0 0 1.8rem', whiteSpace: 'pre-line' }}>
-              {step.title}
-            </h3>
-
-            {/* Description */}
-            <p style={{ fontFamily: 'var(--font-body,Inter)', fontSize: 'clamp(.88rem,1.4vw,1.02rem)', color: 'rgba(255,255,255,.46)', lineHeight: 1.82, margin: '0 0 3rem', maxWidth: '44ch' }}>
-              {step.desc}
-            </p>
-
-            {/* Step counter */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem,1.8vw,1.3rem)', fontWeight: 300, color: step.accent }}>
-                {step.num}
-              </span>
-              <span style={{ fontFamily: 'var(--font-body)', fontSize: '.65rem', color: 'rgba(255,255,255,.25)', letterSpacing: '.1em' }}>
-                / 0{PROG.length}
-              </span>
+            {/* Bubble — title + description + counter */}
+            <div className="prog-bubble">
+              <h3 style={{ fontFamily: 'var(--font-heading,"Space Grotesk")', fontSize: 'clamp(2rem,4.5vw,4rem)', fontWeight: 300, lineHeight: 1.08, letterSpacing: '-.025em', margin: '0 0 1.8rem', whiteSpace: 'pre-line' }}>
+                {step.title}
+              </h3>
+              <p style={{ fontFamily: 'var(--font-body,Inter)', fontSize: 'clamp(.88rem,1.4vw,1.02rem)', color: 'rgba(255,255,255,.46)', lineHeight: 1.82, margin: '0 0 3rem', maxWidth: '44ch' }}>
+                {step.desc}
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1rem,1.8vw,1.3rem)', fontWeight: 300, color: step.accent }}>
+                  {step.num}
+                </span>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '.65rem', color: 'rgba(255,255,255,.25)', letterSpacing: '.1em' }}>
+                  / 0{PROG.length}
+                </span>
+              </div>
             </div>
           </div>
         ))}
