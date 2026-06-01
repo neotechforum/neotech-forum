@@ -257,10 +257,11 @@ export default function GlobeSection() {
       Object.assign(renderer.domElement.style, { position:'absolute', inset:'0', width:'100%', height:'100%' })
       mount.appendChild(renderer.domElement)
 
-      const scene  = new THREE.Scene()
-      const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 2000)
+      const scene    = new THREE.Scene()
+      const isMobile = window.innerWidth <= 768
+      const camera   = new THREE.PerspectiveCamera(45, W / H, 0.1, 2000)
       camera.position.set(0, 20, 340)
-      camera.lookAt(0, 0, 0)
+      camera.lookAt(0, isMobile ? 55 : 0, 0)   // mobile: globe plus bas, espace en haut
 
       // Single sun from the right
       const sun = new THREE.DirectionalLight(0xfff8f0, 3.5)
@@ -526,25 +527,14 @@ export default function GlobeSection() {
     <>
       <style>{`
         .globe-ping { pointer-events: none; }
+        .globe-mobile-text  { display: none; }
+        .globe-mobile-cities { display: none; }
         @media (max-width: 768px) {
-          .globe-ping { display: none !important; }
-          .globe-left-panel {
-            top: 5.5rem !important;
-            transform: none !important;
-            left: 1.5rem !important;
-            max-width: calc(100vw - 3rem) !important;
-            background: rgba(2,8,16,0.72);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            padding: 1rem 1.2rem !important;
-          }
-          .globe-left-panel h2 { font-size: 1.35rem !important; margin-bottom: .4rem !important; }
-          .globe-left-panel p  { font-size: .78rem !important; margin-bottom: 0 !important; }
-          .globe-destinations  { display: none !important; }
+          .globe-left-panel    { display: none !important; }
           .globe-scroll-hint   { display: none !important; }
+          .globe-mobile-text   { display: block !important; }
           .globe-mobile-cities { display: flex !important; }
         }
-        .globe-mobile-cities { display: none; }
       `}</style>
 
       <section
@@ -581,7 +571,28 @@ export default function GlobeSection() {
           </div>
         </div>
 
-        {/* Scroll hint */}
+        {/* Bulle texte — mobile uniquement, dans l'espace en bas du globe */}
+        <div className="globe-mobile-text" style={{
+          position: 'absolute', bottom: '2rem', left: '1.5rem', right: '1.5rem',
+          zIndex: 10,
+          background: 'rgba(2,8,16,0.78)',
+          backdropFilter: 'blur(12px)',
+          border: `1px solid rgba(201,168,76,.2)`,
+          borderRadius: '10px',
+          padding: '1.2rem 1.4rem',
+        }}>
+          <span style={{ display: 'block', fontFamily: 'var(--font-body,Inter)', fontSize: '.6rem', letterSpacing: '.28em', color: GOLD, textTransform: 'uppercase', marginBottom: '.7rem' }}>
+            Expansion mondiale
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-heading,"Space Grotesk")', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-.02em', margin: '0 0 .5rem', color: '#fff' }}>
+            5 villes.<br /><span style={{ color: GOLD }}>5 rendez-vous.</span>
+          </h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '.78rem', color: 'rgba(255,255,255,.38)', lineHeight: 1.7, margin: 0 }}>
+            NeoTech Forum investit les capitales mondiales de la finance et de la tech.
+          </p>
+        </div>
+
+        {/* Scroll hint — desktop */}
         <div className="globe-scroll-hint" style={{ position: 'absolute', top: 'clamp(5rem,8vh,6rem)', right: 'clamp(2rem,4vw,3.5rem)', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '7px' }}>
           <div style={{ width: '1px', height: '40px', background: `linear-gradient(to bottom,${GOLD}44,transparent)` }} />
           <span style={{ fontFamily: 'var(--font-body)', fontSize: '.52rem', letterSpacing: '.2em', color: 'rgba(255,255,255,.18)', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
