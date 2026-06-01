@@ -665,7 +665,7 @@ export default function HomePage() {
             }
             .prog-tag {
               position: absolute !important;
-              top: 5.2rem !important;
+              top: 8.5rem !important;
               left: 1.2rem !important;
               margin-bottom: 0 !important;
             }
@@ -679,6 +679,11 @@ export default function HomePage() {
             }
             .prog-bubble h3 { font-size: 1.45rem !important; margin-bottom: .7rem !important; }
             .prog-bubble p  { font-size: .82rem !important; margin-bottom: .9rem !important; }
+            .prog-timebar {
+              top: 5.5rem !important;
+              transform: none !important;
+              right: 1rem !important;
+            }
           }
         `}</style>
 
@@ -728,7 +733,7 @@ export default function HomePage() {
         ))}
 
         {/* Time progress indicator — right side */}
-        <div style={{
+        <div className="prog-timebar" style={{
           position: 'absolute', right: 'clamp(2rem,4vw,5rem)',
           top: '50%', transform: 'translateY(-50%)',
           zIndex: 10, display: 'flex', alignItems: 'stretch', gap: '14px',
