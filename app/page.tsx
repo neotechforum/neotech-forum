@@ -481,7 +481,7 @@ export default function HomePage() {
               Organisé par EagleChain SA dans l'un des lieux les plus prestigieux de Genève : l'Hôtel Président Wilson, en bord de lac. Un format dense et sans remplissage, au cœur de la capitale de l'innovation financière en Europe.
             </p>
             <div ref={evtStats} style={{ display: 'flex', gap: '2.8rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '2.2rem' }}>
-              {[['∞','Places limitées'],['3','Experts'],['½','Journée']].map(([n,l]) => (
+              {[['5★','Premium'],['3','Experts'],['½','Journée']].map(([n,l]) => (
                 <div key={l}>
                   <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.4rem,4.5vw,3.2rem)', fontWeight: 300, color: GOLD, margin: '0 0 .3rem', lineHeight: 1 }}>{n}</p>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: '.65rem', color: 'rgba(255,255,255,.28)', letterSpacing: '.16em', textTransform: 'uppercase', margin: 0 }}>{l}</p>
