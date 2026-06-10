@@ -93,6 +93,21 @@ export default function ReserverPage() {
           }}>
             {lang === 'fr' ? 'Précommander ma place →' : 'Pre-order my seat →'}
           </Link>
+
+          {/* Tarif groupe */}
+          <div style={{ marginTop: '2.5rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,.06)' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '.82rem', color: 'rgba(255,255,255,.28)', margin: '0 0 .6rem' }}>
+              {lang === 'fr' ? 'Vous venez à plusieurs ?' : 'Coming as a group?'}
+            </p>
+            <Link href="/contact?objet=groupe" style={{
+              fontFamily: 'var(--font-body)', fontSize: '.82rem',
+              color: GOLD, textDecoration: 'underline', textUnderlineOffset: '3px',
+            }}>
+              {lang === 'fr'
+                ? 'Tarif groupe / entreprise disponible pour 5 personnes et plus →'
+                : 'Group / corporate rate available for 5+ people →'}
+            </Link>
+          </div>
         </div>
       </section>
     </div>

@@ -13,6 +13,9 @@ const schema = z.object({
   entreprise: z.string().min(2),
   objet: z.string().min(1),
   offre: z.string().optional(),
+  nombrePersonnes: z.string().optional(),
+  typeOffreGroupe: z.string().optional(),
+  besoins: z.string().optional(),
   message: z.string().min(5),
 })
 
@@ -40,6 +43,7 @@ export default function ContactForm() {
 
   const objet = watch('objet')
   const isPrecommande = objet === 'Précommande' || objet === 'Pre-order'
+  const isGroupe = objet === 'Offre de groupe / entreprise' || objet === 'Group / corporate offer'
   const offres = lang === 'fr' ? OFFRES_FR : OFFRES_EN
 
   const onSubmit = async (data: FormValues) => {
@@ -133,10 +137,11 @@ export default function ContactForm() {
                 {errors.objet && <p className="text-red-400 text-xs mt-1">{errors.objet.message}</p>}
               </div>
 
-              {/* Champ offre — apparaît uniquement pour Précommande */}
+              <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(-6px) } to { opacity:1; transform:none } }`}</style>
+
+              {/* Champ offre — Précommande */}
               {isPrecommande && (
                 <div style={{ animation: 'fadeIn .25s ease' }}>
-                  <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(-6px) } to { opacity:1; transform:none } }`}</style>
                   <label className="text-white/60 text-sm mb-1.5 block">{c.form.offre}</label>
                   <select {...register('offre')} className={cn(inputClass, 'cursor-pointer')}>
                     <option value="" className="bg-[#080808]">— {c.form.offre} —</option>
@@ -144,6 +149,48 @@ export default function ContactForm() {
                       <option key={o} value={o} className="bg-[#080808]">{o}</option>
                     ))}
                   </select>
+                </div>
+              )}
+
+              {/* Champs groupe / entreprise */}
+              {isGroupe && (
+                <div style={{ animation: 'fadeIn .25s ease', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                  <div>
+                    <label className="text-white/60 text-sm mb-1.5 block">
+                      {lang === 'fr' ? 'Nombre de personnes' : 'Number of people'}
+                    </label>
+                    <select {...register('nombrePersonnes')} className={cn(inputClass, 'cursor-pointer')}>
+                      <option value="" className="bg-[#080808]">—</option>
+                      {['5 – 9', '10 – 19', '20 – 49', '50+'].map(n => (
+                        <option key={n} value={n} className="bg-[#080808]">{n}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-white/60 text-sm mb-1.5 block">
+                      {lang === 'fr' ? 'Offre souhaitée pour le groupe' : 'Desired offer for the group'}
+                    </label>
+                    <select {...register('typeOffreGroupe')} className={cn(inputClass, 'cursor-pointer')}>
+                      <option value="" className="bg-[#080808]">—</option>
+                      {(lang === 'fr'
+                        ? ['Standard · 140 CHF / pers.', 'Business VIP · 290 CHF / pers.', 'Dîner Exclusif · 590 CHF / pers.', 'Offre mixte', 'Sur mesure']
+                        : ['Standard · 140 CHF / person', 'Business VIP · 290 CHF / person', 'Exclusive Dinner · 590 CHF / person', 'Mixed offer', 'Custom']
+                      ).map(o => (
+                        <option key={o} value={o} className="bg-[#080808]">{o}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-white/60 text-sm mb-1.5 block">
+                      {lang === 'fr' ? 'Besoins spécifiques (optionnel)' : 'Specific needs (optional)'}
+                    </label>
+                    <textarea
+                      {...register('besoins')}
+                      rows={3}
+                      placeholder={lang === 'fr' ? 'Table dédiée, accès VIP, facturation entreprise...' : 'Dedicated table, VIP access, corporate billing...'}
+                      className={cn(inputClass, 'resize-none')}
+                    />
+                  </div>
                 </div>
               )}
 
