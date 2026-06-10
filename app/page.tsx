@@ -540,8 +540,8 @@ export default function HomePage() {
 
         <style>{`
           @media (max-width: 768px) {
-            #s-speakers { height: 100svh !important; overflow: hidden !important; }
-            .spk-sticky { position: relative !important; overflow: hidden !important; height: 100svh !important; }
+            #s-speakers { height: auto !important; overflow: hidden !important; }
+            .spk-sticky { position: relative !important; overflow: hidden !important; height: auto !important; padding-bottom: 3rem; }
             .spk-layout {
               flex-direction: column !important;
               justify-content: flex-start !important;
