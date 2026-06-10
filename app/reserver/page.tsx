@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLanguage } from '@/context/LanguageContext'
 import PricingSection from '@/components/PricingSection'
-import ReservationForm from '@/components/ReservationForm'
+import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -76,21 +76,23 @@ export default function ReserverPage() {
         <PricingSection />
       </section>
 
-      {/* ── Divider ────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: '640px', margin: '0 auto', padding: 'clamp(3rem,5vh,4.5rem) 2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-          <div style={{ flex: 1, height: '1px', background: `${GOLD}18` }} />
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: '.62rem', letterSpacing: '.22em', color: 'rgba(255,255,255,.25)', textTransform: 'uppercase' }}>
-            {lang === 'fr' ? 'Votre inscription' : 'Your registration'}
-          </span>
-          <div style={{ flex: 1, height: '1px', background: `${GOLD}18` }} />
-        </div>
-      </div>
-
-      {/* ── Form ───────────────────────────────────────────────────── */}
-      <section id="form-section" style={{ background: NAVY, paddingBottom: 'clamp(5rem,9vh,7rem)' }}>
-        <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 clamp(1.5rem,4vw,2rem)' }}>
-          <ReservationForm />
+      {/* ── CTA contact ──────────────────────────────────────────── */}
+      <section style={{ background: NAVY, padding: 'clamp(3rem,6vh,5rem) 2rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: '480px', margin: '0 auto' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '.95rem', color: 'rgba(255,255,255,.4)', lineHeight: 1.8, marginBottom: '2rem' }}>
+            {lang === 'fr'
+              ? 'La billetterie ouvre bientôt. Contactez-nous pour précommander votre place dès maintenant.'
+              : 'Ticketing opens soon. Contact us to pre-order your seat now.'}
+          </p>
+          <Link href="/contact" style={{
+            display: 'inline-block', padding: '.95rem 2.6rem',
+            background: GOLD, color: '#080808',
+            fontFamily: 'var(--font-heading)', fontWeight: 600,
+            fontSize: '.9rem', letterSpacing: '.07em',
+            borderRadius: '2px', textDecoration: 'none',
+          }}>
+            {lang === 'fr' ? 'Précommander ma place →' : 'Pre-order my seat →'}
+          </Link>
         </div>
       </section>
     </div>

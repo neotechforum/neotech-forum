@@ -12,7 +12,8 @@ const schema = z.object({
   email: z.string().email(),
   entreprise: z.string().min(2),
   objet: z.string().min(1),
-  message: z.string().min(10),
+  offre: z.string().optional(),
+  message: z.string().min(5),
 })
 
 type FormValues = z.infer<typeof schema>
@@ -22,16 +23,24 @@ const inputClass =
 
 const reasonIcons = [Building2, Newspaper, Users2, MessageSquare]
 
+const OFFRES_FR = ['Standard · 140 CHF', 'Business VIP · 290 CHF', 'Dîner Exclusif · 590 CHF']
+const OFFRES_EN = ['Standard · 140 CHF', 'Business VIP · 290 CHF', 'Exclusive Dinner · 590 CHF']
+
 export default function ContactForm() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const c = t.contact
   const [submitted, setSubmitted] = useState(false)
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) })
+
+  const objet = watch('objet')
+  const isPrecommande = objet === 'Précommande' || objet === 'Pre-order'
+  const offres = lang === 'fr' ? OFFRES_FR : OFFRES_EN
 
   const onSubmit = async (data: FormValues) => {
     const res = await fetch('/api/contact', {
@@ -67,19 +76,11 @@ export default function ContactForm() {
         </div>
 
         <div className="glass-card rounded-xl p-5 flex flex-col gap-3">
-          <a
-            href="mailto:contact@eaglechain.ch"
-            className="flex items-center gap-3 text-white/60 hover:text-gold transition-colors text-sm"
-          >
+          <a href="mailto:contact@eaglechain.ch" className="flex items-center gap-3 text-white/60 hover:text-gold transition-colors text-sm">
             <Mail size={16} className="text-gold" />
             {c.email}
           </a>
-          <a
-            href="https://eaglechain.ch"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 text-white/60 hover:text-gold transition-colors text-sm"
-          >
+          <a href="https://eaglechain.ch" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-white/60 hover:text-gold transition-colors text-sm">
             <Globe size={16} className="text-gold" />
             {c.website}
           </a>
@@ -131,6 +132,20 @@ export default function ContactForm() {
                 </select>
                 {errors.objet && <p className="text-red-400 text-xs mt-1">{errors.objet.message}</p>}
               </div>
+
+              {/* Champ offre — apparaît uniquement pour Précommande */}
+              {isPrecommande && (
+                <div style={{ animation: 'fadeIn .25s ease' }}>
+                  <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(-6px) } to { opacity:1; transform:none } }`}</style>
+                  <label className="text-white/60 text-sm mb-1.5 block">{c.form.offre}</label>
+                  <select {...register('offre')} className={cn(inputClass, 'cursor-pointer')}>
+                    <option value="" className="bg-[#080808]">— {c.form.offre} —</option>
+                    {offres.map((o) => (
+                      <option key={o} value={o} className="bg-[#080808]">{o}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div>
                 <label className="text-white/60 text-sm mb-1.5 block">{c.form.message}</label>
