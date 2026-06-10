@@ -1,12 +1,16 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
+import { store } from '@/lib/store'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const TO = 'contact@neotech-forum.ch'
 
 export async function POST(req: Request) {
   try {
-    const { nom, prenom, email, entreprise, poste, telephone, pass, message } = await req.json()
+    const body = await req.json()
+    const { nom, prenom, email, entreprise, poste, telephone, pass, message } = body
+
+    store.add({ type: 'precommande', data: { nom, prenom, email, entreprise, poste, telephone, pass, message: message || '' } })
 
     await resend.emails.send({
       from: 'NeoTech Forum <noreply@neotech-forum.ch>',
