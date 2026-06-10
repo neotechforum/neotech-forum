@@ -529,7 +529,7 @@ export default function HomePage() {
 
       {/* ══ LES INTERVENANTS — card deck ════════════════════════════════ */}
       <section id="s-speakers" ref={spkSection} style={{ position: 'relative', height: '480vh', background: NAVY }}>
-        <div style={{ position: 'sticky', top: 0, height: '100svh', overflow: 'hidden' }}>
+        <div className="spk-sticky" style={{ position: 'sticky', top: 0, height: '100svh', overflow: 'hidden' }}>
 
         {/* Particules flottantes — même effet que le hero */}
         <Particles />
@@ -540,7 +540,8 @@ export default function HomePage() {
 
         <style>{`
           @media (max-width: 768px) {
-            #s-speakers { height: 100svh !important; }
+            #s-speakers { height: 100svh !important; overflow: visible !important; }
+            .spk-sticky { position: relative !important; overflow: visible !important; height: 100svh !important; }
             .spk-layout {
               flex-direction: column !important;
               justify-content: flex-start !important;
