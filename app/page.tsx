@@ -20,7 +20,7 @@ const P = {
   event: '/event.jpg',
   conf:  'https://picsum.photos/seed/gva-conf/1920/1080',
   sp1:   'https://laval-virtual.com/wp-content/uploads/2024/03/Maxime-VIDAL-1.png',
-  sp2:   'https://media.licdn.com/dms/image/v2/D4E03AQFxRLyAtmwCaw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1702242399827?e=2147483647&v=beta&t=nCmLF-GMw9eXGTHlF4Pnb8d3ZK1s9JiQduB3vhHQXuA',
+  sp2:   '/jonathan-oks.jpg',
   sp3:   'https://media.licdn.com/dms/image/v2/D4E22AQHHhYeeNDA9Ow/feedshare-shrink_800/B4EZ1E7wHrIgAc-/0/1774978008276?e=2147483647&v=beta&t=TU6xTl5viTbT9lORuUvpbePMDV04XQYM6a3KIy_3bmQ',
 }
 
@@ -207,6 +207,7 @@ export default function HomePage() {
   const ctaButtons = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768
     const gctx = gsap.context(() => {
 
       /* ── HERO ──────────────────────────────────────────────────────── */
@@ -248,61 +249,49 @@ export default function HomePage() {
         .from(Array.from(evtStats.current?.children ?? []),
           { opacity: 0, y: 32, stagger: 0.12, duration: 0.5, ease: 'back.out(1.6)' }, '-=0.25')
 
-      /* ── SPEAKERS — sticky natif, pas de pin GSAP ────────────────────
-         position: sticky en CSS → aucun spacer GSAP inséré dans le DOM
-         → zéro conflit avec le pin Globe ni avec le pin Programme.      */
+      /* ── SPEAKERS ──────────────────────────────────────────────────── */
       const cards = spkCardRefs.current.filter(Boolean) as HTMLDivElement[]
       const dots  = spkDotRefs.current.filter(Boolean) as HTMLDivElement[]
 
-      /* exitX garantit que la carte sort complètement à gauche du viewport
-         (-140% ≈ -406px ne suffisait pas : la carte restait visible à ~135px du bord) */
-      const exitX = -(window.innerWidth + 300)
+      if (!isMobile) {
+        /* Desktop : scroll-driven card deck */
+        const exitX = -(window.innerWidth + 300)
 
-      gsap.set(cards[0], { x: 0,   y: 0,  rotation: 0,    scale: 1,     zIndex: 4 })
-      gsap.set(cards[1], { x: 28, y: 16, rotation: 3,    scale: 0.94,  zIndex: 3 })
-      gsap.set(cards[2], { x: 56, y: 32, rotation: 6,    scale: 0.88,  zIndex: 2 })
-      gsap.set(cards[3], { x: 84, y: 48, rotation: 9,    scale: 0.82,  zIndex: 1 })
+        gsap.set(cards[0], { x: 0,  y: 0,  rotation: 0, scale: 1,    zIndex: 4 })
+        gsap.set(cards[1], { x: 28, y: 16, rotation: 3, scale: 0.94, zIndex: 3 })
+        gsap.set(cards[2], { x: 56, y: 32, rotation: 6, scale: 0.88, zIndex: 2 })
+        gsap.set(cards[3], { x: 84, y: 48, rotation: 9, scale: 0.82, zIndex: 1 })
 
-      const spkTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#s-speakers',
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1.4,
-        },
-      })
-
-      spkTl.to({}, { duration: 0.5 })
-
-      /* transition 1 */
-      spkTl
-        .to(cards[0], { x: exitX, rotation: -16, opacity: 0, duration: 0.65, ease: 'power2.in' })
-        .to(cards[1], { x: 0, y: 0, rotation: 0, scale: 1, zIndex: 4, duration: 0.65, ease: 'power3.out' }, '<')
-        .to(cards[2], { x: 28, y: 16, rotation: 3, scale: 0.94, zIndex: 3, duration: 0.65, ease: 'power3.out' }, '<')
-        .to(cards[3], { x: 56, y: 32, rotation: 6, scale: 0.88, zIndex: 2, duration: 0.65, ease: 'power3.out' }, '<')
-        .to(dots[0], { width: '8px', backgroundColor: 'rgba(255,255,255,.18)', duration: 0.3 }, '<')
-        .to(dots[1], { width: '28px', backgroundColor: GOLD, duration: 0.3 }, '<')
-
-      spkTl.to({}, { duration: 0.5 })
-
-      /* transition 2 */
-      spkTl
-        .to(cards[1], { x: exitX, rotation: -16, opacity: 0, duration: 0.65, ease: 'power2.in' })
-        .to(cards[2], { x: 0, y: 0, rotation: 0, scale: 1, zIndex: 4, duration: 0.65, ease: 'power3.out' }, '<')
-        .to(cards[3], { x: 28, y: 16, rotation: 3, scale: 0.94, zIndex: 3, duration: 0.65, ease: 'power3.out' }, '<')
-        .to(dots[1], { width: '8px', backgroundColor: 'rgba(255,255,255,.18)', duration: 0.3 }, '<')
-        .to(dots[2], { width: '28px', backgroundColor: GOLD, duration: 0.3 }, '<')
-
-      spkTl.to({}, { duration: 0.5 })
-
-      /* transition 3 */
-      spkTl
-        .to(cards[2], { x: exitX, rotation: -16, opacity: 0, duration: 0.65, ease: 'power2.in' })
-        .to(cards[3], { x: 0, y: 0, rotation: 0, scale: 1, zIndex: 4, duration: 0.65, ease: 'power3.out' }, '<')
-        .to(dots[2], { width: '8px', backgroundColor: 'rgba(255,255,255,.18)', duration: 0.3 }, '<')
-        .to(dots[3], { width: '28px', backgroundColor: GOLD, duration: 0.3 }, '<')
-
-      spkTl.to({}, { duration: 0.5 })
+        const spkTl = gsap.timeline({
+          scrollTrigger: { trigger: '#s-speakers', start: 'top top', end: 'bottom bottom', scrub: 1.4 },
+        })
+        spkTl.to({}, { duration: 0.5 })
+        spkTl
+          .to(cards[0], { x: exitX, rotation: -16, opacity: 0, duration: 0.65, ease: 'power2.in' })
+          .to(cards[1], { x: 0, y: 0, rotation: 0, scale: 1, zIndex: 4, duration: 0.65, ease: 'power3.out' }, '<')
+          .to(cards[2], { x: 28, y: 16, rotation: 3, scale: 0.94, zIndex: 3, duration: 0.65, ease: 'power3.out' }, '<')
+          .to(cards[3], { x: 56, y: 32, rotation: 6, scale: 0.88, zIndex: 2, duration: 0.65, ease: 'power3.out' }, '<')
+          .to(dots[0], { width: '8px', backgroundColor: 'rgba(255,255,255,.18)', duration: 0.3 }, '<')
+          .to(dots[1], { width: '28px', backgroundColor: GOLD, duration: 0.3 }, '<')
+        spkTl.to({}, { duration: 0.5 })
+        spkTl
+          .to(cards[1], { x: exitX, rotation: -16, opacity: 0, duration: 0.65, ease: 'power2.in' })
+          .to(cards[2], { x: 0, y: 0, rotation: 0, scale: 1, zIndex: 4, duration: 0.65, ease: 'power3.out' }, '<')
+          .to(cards[3], { x: 28, y: 16, rotation: 3, scale: 0.94, zIndex: 3, duration: 0.65, ease: 'power3.out' }, '<')
+          .to(dots[1], { width: '8px', backgroundColor: 'rgba(255,255,255,.18)', duration: 0.3 }, '<')
+          .to(dots[2], { width: '28px', backgroundColor: GOLD, duration: 0.3 }, '<')
+        spkTl.to({}, { duration: 0.5 })
+        spkTl
+          .to(cards[2], { x: exitX, rotation: -16, opacity: 0, duration: 0.65, ease: 'power2.in' })
+          .to(cards[3], { x: 0, y: 0, rotation: 0, scale: 1, zIndex: 4, duration: 0.65, ease: 'power3.out' }, '<')
+          .to(dots[2], { width: '8px', backgroundColor: 'rgba(255,255,255,.18)', duration: 0.3 }, '<')
+          .to(dots[3], { width: '28px', backgroundColor: GOLD, duration: 0.3 }, '<')
+        spkTl.to({}, { duration: 0.5 })
+      } else {
+        /* Mobile : état initial — carte 0 visible, les autres masquées */
+        gsap.set(cards[0], { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, zIndex: 4 })
+        cards.slice(1).forEach(c => gsap.set(c, { x: 0, y: 0, rotation: 0, scale: 1, opacity: 0, zIndex: 1 }))
+      }
 
       gsap.timeline({ scrollTrigger: { trigger: '#s-speakers', start: 'top 85%' } })
         .from(spkLabel.current, { opacity: 0, x: -40, duration: 0.55, ease: 'power3.out' })
@@ -363,7 +352,53 @@ export default function HomePage() {
           { opacity: 0, y: 18, stagger: 0.12, duration: 0.48 }, '-=0.25')
     })
 
-    return () => gctx.revert()
+    /* ── Mobile swipe sur les cartes intervenants ──────────────────── */
+    let touchStartX = 0
+    let currentCard = 0
+
+    const onTouchStart = (e: TouchEvent) => { touchStartX = e.touches[0].clientX }
+
+    const onTouchEnd = (e: TouchEvent) => {
+      const diff = touchStartX - e.changedTouches[0].clientX
+      if (Math.abs(diff) < 50) return
+
+      const cards = spkCardRefs.current.filter(Boolean) as HTMLDivElement[]
+      const dots  = spkDotRefs.current.filter(Boolean) as HTMLDivElement[]
+      const next  = diff > 0
+        ? Math.min(currentCard + 1, cards.length - 1)
+        : Math.max(currentCard - 1, 0)
+
+      if (next === currentCard) return
+
+      const exitX = diff > 0 ? -(window.innerWidth + 100) : (window.innerWidth + 100)
+      const enterX = diff > 0 ? (window.innerWidth + 100) : -(window.innerWidth + 100)
+
+      gsap.to(cards[currentCard], { x: exitX, opacity: 0, duration: 0.35, ease: 'power2.in' })
+      gsap.fromTo(cards[next],
+        { x: enterX, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.38, ease: 'power3.out', delay: 0.1 }
+      )
+      dots.forEach((d, i) => gsap.to(d, {
+        width: i === next ? '28px' : '8px',
+        backgroundColor: i === next ? GOLD : 'rgba(255,255,255,.18)',
+        duration: 0.25,
+      }))
+
+      currentCard = next
+    }
+
+    if (isMobile && spkSection.current) {
+      spkSection.current.addEventListener('touchstart', onTouchStart, { passive: true })
+      spkSection.current.addEventListener('touchend', onTouchEnd, { passive: true })
+    }
+
+    return () => {
+      gctx.revert()
+      if (isMobile && spkSection.current) {
+        spkSection.current.removeEventListener('touchstart', onTouchStart)
+        spkSection.current.removeEventListener('touchend', onTouchEnd)
+      }
+    }
   }, [])
 
   /* shared styles */
@@ -505,24 +540,25 @@ export default function HomePage() {
 
         <style>{`
           @media (max-width: 768px) {
+            #s-speakers { height: 100svh !important; }
             .spk-layout {
               flex-direction: column !important;
               justify-content: flex-start !important;
               align-items: flex-start !important;
               padding-top: 6rem !important;
               gap: 2rem !important;
-              overflow-y: auto !important;
             }
             .spk-left { max-width: 100% !important; width: 100% !important; }
-            .spk-left h2 { font-size: 1.4rem !important; margin-bottom: 1.2rem !important; }
-            .spk-left > div { margin-bottom: 0 !important; }
+            .spk-left h2 { font-size: 1.4rem !important; margin-bottom: 1rem !important; }
             .spk-cards {
-              width: min(280px, 78vw) !important;
-              height: 380px !important;
+              width: min(260px, 74vw) !important;
+              height: 360px !important;
               align-self: center !important;
               margin: 0 auto !important;
             }
+            .spk-swipe-hint { display: flex !important; }
           }
+          .spk-swipe-hint { display: none; }
         `}</style>
 
         {/* Layout: left text / right stack */}
@@ -555,11 +591,18 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Scroll hint */}
+            {/* Scroll hint — desktop */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ width: '24px', height: '1px', background: `${GOLD}44` }} />
               <span style={{ fontFamily: 'var(--font-body)', fontSize: '.58rem', letterSpacing: '.22em', color: 'rgba(255,255,255,.22)', textTransform: 'uppercase' }}>
                 Défiler pour découvrir
+              </span>
+            </div>
+
+            {/* Swipe hint — mobile uniquement */}
+            <div className="spk-swipe-hint" style={{ alignItems: 'center', gap: '10px', marginTop: '.5rem' }}>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: '.58rem', letterSpacing: '.22em', color: 'rgba(255,255,255,.22)', textTransform: 'uppercase' }}>
+                ← Swiper pour naviguer →
               </span>
             </div>
           </div>
