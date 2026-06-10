@@ -405,12 +405,31 @@ export default function HomePage() {
 
         <div style={{ position: 'relative', zIndex: 3, padding: '0 clamp(2rem,7vw,8rem) clamp(8vh,12vh,14vh)' }}>
           <span ref={heroLabel} style={{ ...labelSty, marginBottom: '1.6rem' }}>Genève · Septembre 2026</span>
-          <h1 style={{ fontFamily: 'var(--font-heading,"Space Grotesk")', fontSize: 'clamp(3.8rem,9.5vw,8.5rem)', fontWeight: 300, lineHeight: .92, letterSpacing: '-.03em', margin: '0 0 2.2rem' }}>
+          <h1 style={{ margin: '0 0 2.2rem', lineHeight: 1 }}>
             <span style={{ overflow: 'hidden', display: 'block' }}>
-              <span ref={heroLine1} style={{ display: 'block' }}>NeoTech</span>
+              <span ref={heroLine1} style={{
+                display: 'block',
+                fontFamily: 'var(--font-tech,"Orbitron")',
+                fontSize: 'clamp(3.2rem,8.5vw,8rem)',
+                fontWeight: 800,
+                letterSpacing: '-.01em',
+                color: '#fff',
+                lineHeight: .95,
+                textTransform: 'uppercase',
+              }}>NeoTech</span>
             </span>
             <span style={{ overflow: 'hidden', display: 'block' }}>
-              <span ref={heroLine2} style={{ display: 'block' }}>Forum</span>
+              <span ref={heroLine2} style={{
+                display: 'block',
+                fontFamily: 'var(--font-heading,"Space Grotesk")',
+                fontSize: 'clamp(1.4rem,3.2vw,3rem)',
+                fontWeight: 300,
+                letterSpacing: '.75em',
+                color: GOLD,
+                textTransform: 'uppercase',
+                marginTop: '.5rem',
+                paddingLeft: '.1em',
+              }}>Forum</span>
             </span>
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: '0 0 1.6rem' }}>
