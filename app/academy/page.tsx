@@ -134,7 +134,7 @@ export default function AcademyPage() {
             Formations premium en IA, Blockchain &amp; Transformation digitale
           </p>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(.85rem,1.3vw,.97rem)', color: 'rgba(255,255,255,.3)', maxWidth: '58ch', margin: '0 auto 3.8rem', lineHeight: 1.88 }}>
-            Accompagner les dirigeants, cadres et entreprises dans la compréhension, l'adoption et la sécurisation des nouvelles technologies — formats courts, concrets et adaptés aux enjeux métiers.
+            Accompagner les dirigeants, cadres et entreprises dans la compréhension, l'adoption et la sécurisation des nouvelles technologies. Formats courts, concrets et adaptés aux enjeux métiers.
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -265,9 +265,9 @@ export default function AcademyPage() {
               <label style={{ fontFamily: 'var(--font-body)', fontSize: '.62rem', letterSpacing: '.18em', color: 'rgba(255,255,255,.32)', textTransform: 'uppercase' }}>Programme d'intérêt</label>
               <select className="acad-inp" style={{ ...inp, appearance: 'none' as const, cursor: 'pointer' }}>
                 <option value="">Sélectionner un programme</option>
-                <option>01 — Executive Briefing</option>
-                <option>02 — Management Workshops</option>
-                <option>03 — Sector Programs</option>
+                <option>01 · Executive Briefing</option>
+                <option>02 · Management Workshops</option>
+                <option>03 · Sector Programs</option>
                 <option>Sur mesure / autre</option>
               </select>
             </div>
@@ -289,7 +289,7 @@ export default function AcademyPage() {
           </form>
 
           <p style={{ marginTop: '2rem', fontFamily: 'var(--font-body)', fontSize: '.6rem', color: 'rgba(255,255,255,.16)', letterSpacing: '.14em', textTransform: 'uppercase' }}>
-            Réponse garantie sous 48h — EagleChain SA, Genève
+            Réponse garantie sous 48h · EagleChain SA, Genève
           </p>
         </div>
       </section>

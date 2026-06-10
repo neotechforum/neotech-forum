@@ -78,7 +78,7 @@ export default function Navbar() {
             {lang === 'fr' ? 'EN' : 'FR'}
           </button>
           <Link
-            href="/reserver"
+            href="/contact"
             className="bg-gold hover:bg-gold-light text-bg text-sm font-semibold px-5 py-2 rounded transition-colors"
           >
             {t.nav.reserveCta}
@@ -119,7 +119,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/reserver"
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             className="bg-gold text-bg text-sm font-semibold px-5 py-3 rounded text-center mt-2"
           >

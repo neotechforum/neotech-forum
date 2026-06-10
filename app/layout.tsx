@@ -18,17 +18,17 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'NeoTech Forum — Genève 2026 | IA · Blockchain · Tech Émergente',
+  title: 'NeoTech Forum · Genève 2026 | IA · Blockchain · Tech Émergente',
   description:
-    "Forum premium B2B réunissant 200 décideurs autour de l'IA, la blockchain et les technologies émergentes. Genève, Septembre 2026. Organisé par EagleChain SA.",
+    "Forum premium B2B réunissant 150 décideurs autour de l'IA, la blockchain et les technologies émergentes. Genève, Septembre 2026. Organisé par EagleChain SA.",
   keywords: ['NeoTech Forum', 'IA', 'Blockchain', 'Genève', 'Forum B2B', 'EagleChain'],
   icons: {
     icon: '/favicon-logo.png',
     apple: '/favicon-logo.png',
   },
   openGraph: {
-    title: 'NeoTech Forum — Genève 2026',
-    description: '200 décideurs. Une demi-journée pour transformer votre vision en stratégie.',
+    title: 'NeoTech Forum · Genève 2026',
+    description: '150 décideurs. Une demi-journée pour transformer votre vision en stratégie.',
     type: 'website',
   },
 }

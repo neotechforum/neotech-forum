@@ -81,7 +81,7 @@ export default function ProgrammePage() {
             <div style={{ width: '1px', height: '14px', background: 'rgba(255,255,255,.1)', margin: '0 1.4rem' }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-body)', fontSize: '.78rem', color: 'rgba(255,255,255,.55)' }}>
               <MapPin size={13} style={{ color: GOLD, flexShrink: 0 }} />
-              Hôtel Métropole Genève
+              Hôtel Président Wilson, Genève
             </div>
           </div>
         </div>
@@ -105,10 +105,10 @@ export default function ProgrammePage() {
         <div id="prog-cta" style={{ maxWidth: '480px', margin: '0 auto', background: 'rgba(8,14,28,.84)', border: '1px solid rgba(0,170,255,.14)', borderRadius: '4px', padding: 'clamp(2rem,4vw,3rem) 2.5rem', backdropFilter: 'blur(22px)' }}>
           <span style={{ ...label, marginBottom: '1.2rem' }}>Places limitées</span>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: '.92rem', color: 'rgba(255,255,255,.4)', marginBottom: '2rem', lineHeight: 1.72 }}>
-            Rejoignez 200 décideurs pour cette demi-journée d'exception à Genève.
+            Rejoignez 150 décideurs pour cette demi-journée d'exception à Genève.
           </p>
-          <Link href="/reserver" style={{ display: 'inline-block', padding: '.9rem 2.4rem', background: GOLD, color: '#080808', fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '.88rem', letterSpacing: '.07em', borderRadius: '2px', textDecoration: 'none' }}>
-            {t.nav.reserveCta}
+          <Link href="/contact" style={{ display: 'inline-block', padding: '.9rem 2.4rem', background: GOLD, color: '#080808', fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '.88rem', letterSpacing: '.07em', borderRadius: '2px', textDecoration: 'none' }}>
+            Précommander ma place
           </Link>
         </div>
       </section>

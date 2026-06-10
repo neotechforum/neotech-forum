@@ -52,9 +52,13 @@ export default function ReservationForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) })
 
-  const onSubmit = async () => {
-    await new Promise((r) => setTimeout(r, 800))
-    setSubmitted(true)
+  const onSubmit = async (data: FormValues) => {
+    const res = await fetch('/api/reserver', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    if (res.ok) setSubmitted(true)
   }
 
   if (submitted) {

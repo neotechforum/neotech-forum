@@ -54,7 +54,7 @@ export default function PricingSection() {
                 </div>
 
                 <Link
-                  href="/reserver"
+                  href="/contact"
                   className={cn(
                     'text-center text-sm font-semibold px-6 py-3.5 rounded transition-all',
                     tier.recommended
@@ -62,7 +62,7 @@ export default function PricingSection() {
                       : 'border border-white/15 text-white/70 hover:border-gold/40 hover:text-gold'
                   )}
                 >
-                  {t.nav.reserveCta}
+                  Précommander ma place
                 </Link>
               </div>
             </AnimatedSection>
@@ -70,12 +70,15 @@ export default function PricingSection() {
         </div>
 
         <AnimatedSection>
-          <p className="text-center text-white/40 text-sm mt-8">
-            {t.pricing.groupNote}{' '}
-            <Link href="/contact" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
-              {t.pricing.contactLink}
-            </Link>
-          </p>
+          <div className="text-center mt-10 flex flex-col items-center gap-2">
+            <div className="flex items-center gap-2 text-gold/70 text-xs font-medium uppercase tracking-widest">
+              <span className="inline-block w-2 h-2 rounded-full bg-gold/60 animate-pulse" />
+              Billetterie officielle bientôt disponible
+            </div>
+            <p className="text-white/35 text-sm">
+              Contactez-nous dès maintenant pour réserver votre place en avant-première.
+            </p>
+          </div>
         </AnimatedSection>
       </div>
     </section>

@@ -17,7 +17,7 @@ const CYAN  = '#00E5FF'
 
 const P = {
   hero:  'https://www.image2url.com/r2/default/videos/1780221443690-60f34b51-14f2-4b38-a5f8-b024606ed61c.mp4',
-  event: 'https://www.o-lac.com/wp-content/uploads/2026/01/Soiree_20_ans-01-scaled.jpg',
+  event: '/event.jpg',
   conf:  'https://picsum.photos/seed/gva-conf/1920/1080',
   sp1:   'https://laval-virtual.com/wp-content/uploads/2024/03/Maxime-VIDAL-1.png',
   sp2:   'https://media.licdn.com/dms/image/v2/D4E03AQFxRLyAtmwCaw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1702242399827?e=2147483647&v=beta&t=nCmLF-GMw9eXGTHlF4Pnb8d3ZK1s9JiQduB3vhHQXuA',
@@ -27,37 +27,37 @@ const P = {
 const PROG = [
   {
     num: '01', time: '14:00', tag: 'Accueil',
-    title: 'Accueil &\nNetworking Premium',
-    desc: "Café, rencontres et premières connexions dans un cadre d'exception. L'opportunité idéale pour créer les liens qui comptent avant même la première keynote.",
-    img: 'https://images.ctfassets.net/7thvzrs93dvf/6LEyJ8Ep69EktySAK36jCo/0d9d9897068199c2d21796b3bc80ba27/how_to_make_the_most_of_your_next_networking_event_main_image.jpg',
+    title: 'Accueil &\nNetworking',
+    desc: "Café, rencontres et premières connexions dans un cadre d'exception. L'opportunité idéale pour créer les liens qui comptent avant même la première conférence.",
+    img: '/prog-accueil.jpg',
     accent: CYAN,
   },
   {
-    num: '02', time: '14:45', tag: 'Keynote',
-    title: 'IA Générative &\nFinance de Demain',
-    desc: "Comment l'IA générative redéfinit les modèles financiers, la gestion de risque et l'expérience client dans la banque privée et les marchés de capitaux.",
-    img: 'https://avarap.asso.fr/wp-content/uploads/2025/02/Conference-AI-Avarap-HDF-photo-humus.jpg',
+    num: '02', time: '14:30', tag: 'Conférence',
+    title: 'Blockchain :\nActifs & Régulation',
+    desc: "Actifs numériques, DeFi et cadre réglementaire suisse. Juristes, régulateurs et entrepreneurs décryptent les opportunités concrètes de la finance décentralisée en Europe.",
+    img: '/prog-blockchain.jpg',
     accent: GOLD,
   },
   {
-    num: '03', time: '15:30', tag: 'Panel',
-    title: 'Blockchain, DeFi &\nRégulation Suisse',
-    desc: "Régulateurs, juristes et entrepreneurs décryptent ensemble le cadre suisse des actifs numériques et les opportunités concrètes de la finance décentralisée.",
-    img: 'https://cdn.prod.website-files.com/63e28ebf4271f76a4d04df7e/690099b6c924638f4b0ca521_Artificial%20Intelligence%20Keynote.jpg',
+    num: '03', time: '16:00', tag: 'Conférence & Table Ronde',
+    title: 'IA :\nStratégie & Applications',
+    desc: "Comment l'IA redéfinit les modèles d'entreprise, la gestion de risque et la prise de décision. Suivi d'une table ronde avec les intervenants et les participants.",
+    img: '/prog-ia.jpg',
     accent: CYAN,
   },
   {
-    num: '04', time: '16:15', tag: 'Table Ronde',
-    title: 'Cybersécurité &\nRésilience des Marchés',
-    desc: "NIS2, gestion des cybermenaces, protection des infrastructures critiques : les experts partagent leurs stratégies de défense face aux risques émergents.",
-    img: 'https://alfieformation.fr/wp-content/uploads/2025/06/conference-intelligence-artificielle-1024x683.jpg',
+    num: '04', time: '18:00', tag: 'Cocktail VIP',
+    title: 'Glow Bar\nPrivatisé',
+    desc: "Cocktail VIP dans un cadre exclusif au Glow Bar privatisé pour l'occasion. Networking premium, échanges informels et premières rencontres stratégiques.",
+    img: '/prog-cocktail.jpg',
     accent: GOLD,
   },
   {
-    num: '05', time: '17:00', tag: 'Clôture',
-    title: 'Cocktail &\nNetworking Rooftop',
-    desc: "Une conclusion à la hauteur de l'ambition du forum. Vue panoramique sur le lac Léman, networking premium et échanges informels dans un cadre unique.",
-    img: 'https://www.monde-economique.ch/wp-content/uploads/e71794dd48fad5616492e7954f6f5e648df62111.jpeg',
+    num: '05', time: '20:00', tag: 'Dîner Exclusif',
+    title: 'Dîner avec\nles Intervenants',
+    desc: "En petit comité, autour d'une table avec les intervenants du forum. Un moment rare pour approfondir les échanges et nouer des relations durables.",
+    img: '/prog-diner.jpg',
     accent: GOLD,
   },
 ]
@@ -392,16 +392,13 @@ export default function HomePage() {
       <section id="s-hero" style={{ position: 'relative', height: '100svh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', background: NAVY }}>
 
         <div ref={heroPhoto} style={{ position: 'absolute', inset: '-20% 0', zIndex: 0, transformOrigin: 'center' }}>
-          {/\.(mp4|webm|ogg)/i.test(P.hero) ? (
-            <video src={P.hero} autoPlay muted loop playsInline
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 42%' }} />
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={P.hero} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 42%' }} />
-          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero.jpg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%' }} />
         </div>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top,rgba(8,14,28,.97) 0%,rgba(8,14,28,.52) 48%,rgba(8,14,28,.18) 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(100deg,rgba(8,14,28,.7) 0%,transparent 55%)' }} />
+        {/* Overlay bleu marine basse opacité */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'rgba(4,12,40,.55)' }} />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top,rgba(8,14,28,.97) 0%,rgba(8,14,28,.35) 48%,rgba(8,14,28,.08) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(100deg,rgba(8,14,28,.65) 0%,transparent 55%)' }} />
         <div style={{ position: 'absolute', inset: 0, zIndex: 2 }}>
           <Particles />
         </div>
@@ -416,11 +413,19 @@ export default function HomePage() {
               <span ref={heroLine2} style={{ display: 'block' }}>Forum</span>
             </span>
           </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: '0 0 1.6rem' }}>
+            <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.5 0C3.46 0 1 2.46 1 5.5c0 4.12 5.5 10.5 5.5 10.5S12 9.62 12 5.5C12 2.46 9.54 0 6.5 0zm0 7.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#C9A84C"/>
+            </svg>
+            <span style={{ fontFamily: 'var(--font-body,Inter)', fontSize: 'clamp(.72rem,1.1vw,.85rem)', color: GOLD, letterSpacing: '.06em' }}>
+              Hôtel Président Wilson, Genève
+            </span>
+          </div>
           <p ref={heroDesc} style={{ fontFamily: 'var(--font-body,Inter)', fontSize: 'clamp(.9rem,1.5vw,1.08rem)', fontWeight: 300, color: 'rgba(255,255,255,.52)', maxWidth: '40ch', lineHeight: 1.78, margin: '0 0 2.8rem' }}>
-            200 décideurs. Une matinée pour décrypter les technologies qui redéfinissent la finance, l'entreprise et la stratégie.
+            150 décideurs. Une matinée pour décrypter les technologies qui redéfinissent la finance, l'entreprise et la stratégie.
           </p>
           <div ref={heroCta} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link href="/reserver" style={btnSolid}>Réserver ma place →</Link>
+            <Link href="/contact" style={btnSolid}>Précommander ma place →</Link>
             <Link href="/programme" style={btnGhost}>Voir le programme</Link>
           </div>
         </div>
@@ -454,10 +459,10 @@ export default function HomePage() {
               Là où les décideurs suisses rencontrent les technologies qui transforment les marchés.
             </h2>
             <p ref={evtDesc} style={{ fontFamily: 'var(--font-body)', fontSize: '.95rem', color: 'rgba(255,255,255,.46)', lineHeight: 1.82, margin: '0 0 3rem' }}>
-              Organisé par EagleChain SA — un format dense et sans remplissage, au cœur de Genève, capitale de l'innovation financière en Europe.
+              Organisé par EagleChain SA dans l'un des lieux les plus prestigieux de Genève : l'Hôtel Président Wilson, en bord de lac. Un format dense et sans remplissage, au cœur de la capitale de l'innovation financière en Europe.
             </p>
             <div ref={evtStats} style={{ display: 'flex', gap: '2.8rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '2.2rem' }}>
-              {[['200','Décideurs'],['3','Experts'],['½','Journée']].map(([n,l]) => (
+              {[['150','Décideurs'],['3','Experts'],['½','Journée']].map(([n,l]) => (
                 <div key={l}>
                   <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.4rem,4.5vw,3.2rem)', fontWeight: 300, color: GOLD, margin: '0 0 .3rem', lineHeight: 1 }}>{n}</p>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: '.65rem', color: 'rgba(255,255,255,.28)', letterSpacing: '.16em', textTransform: 'uppercase', margin: 0 }}>{l}</p>
@@ -815,7 +820,7 @@ export default function HomePage() {
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem,4.5vw,3.8rem)', fontWeight: 300, lineHeight: .96, letterSpacing: '-.03em', margin: '0 0 .25rem' }}>NeoTech</h2>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem,4.5vw,3.8rem)', fontWeight: 300, lineHeight: .96, letterSpacing: '-.03em', color: GOLD, margin: '0 0 2rem' }}>Academy</h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(.88rem,1.4vw,1rem)', color: 'rgba(255,255,255,.42)', lineHeight: 1.82, margin: '0 0 2.6rem', maxWidth: '46ch' }}>
-                Formations premium en IA, Blockchain &amp; Transformation digitale — formats courts et concrets pour dirigeants, cadres et équipes métiers.
+                Formations premium en IA, Blockchain &amp; Transformation digitale. Formats courts et concrets pour dirigeants, cadres et équipes métiers.
               </p>
               <Link href="/academy" style={{ ...btnSolid, display: 'inline-block' }}>Découvrir l'Academy →</Link>
             </div>
@@ -823,9 +828,9 @@ export default function HomePage() {
             {/* Right — programme pills */}
             <div style={{ flex: '1 1 280px', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
               {[
-                { num: '01', title: 'Executive Briefing', sub: 'IA, blockchain & stratégie — format 2h ou demi-journée' },
-                { num: '02', title: 'Management Workshops', sub: 'IA opérationnelle & agents IA — demi-journée ou journée' },
-                { num: '03', title: 'Sector Programs', sub: 'Banque, logistique, conformité — programmes sur mesure' },
+                { num: '01', title: 'Executive Briefing', sub: 'IA, blockchain & stratégie · format 2h ou demi-journée' },
+                { num: '02', title: 'Management Workshops', sub: 'IA opérationnelle & agents IA · demi-journée ou journée' },
+                { num: '03', title: 'Sector Programs', sub: 'Banque, logistique, conformité · programmes sur mesure' },
               ].map(p => (
                 <div key={p.num} style={{
                   display: 'flex', alignItems: 'flex-start', gap: '1.4rem',
@@ -864,7 +869,7 @@ export default function HomePage() {
             Votre avenir.
           </h2>
           <p ref={ctaDesc} style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(.9rem,1.4vw,1.05rem)', color: 'rgba(255,255,255,.4)', maxWidth: '38ch', margin: '0 auto 3.2rem', lineHeight: 1.82 }}>
-            200 décideurs. Un format d'exception. L'intersection de la finance et de la tech.
+            150 décideurs. Un format d'exception. L'intersection de la finance et de la tech.
           </p>
           <div ref={ctaButtons} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/reserver" style={{ ...btnSolid, padding: '.95rem 2.6rem', fontSize: '.9rem' }}>Réserver ma place →</Link>
