@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: '%s · NeoTech Forum Genève 2026',
   },
   description:
-    "NeoTech Forum 2026 — 150 dirigeants, cadres et investisseurs réunis autour de l'IA, la Blockchain et la transformation digitale. Le 19 septembre 2026 à l'Hôtel Président Wilson, Genève. Conférences, table ronde, cocktail VIP et dîner exclusif avec les intervenants. Organisé par EagleChain SA.",
+    "NeoTech Forum 2026 — Places limitées. Un événement exclusif pour dirigeants, décideurs, experts et investisseurs autour de l'IA, la Blockchain et la transformation digitale. Le 19 septembre 2026 à l'Hôtel Président Wilson, Genève. Conférences, table ronde, cocktail VIP et dîner exclusif avec les intervenants. Organisé par EagleChain SA.",
   keywords: [
     'NeoTech Forum 2026', 'forum IA Genève', 'forum blockchain Suisse', 'EagleChain SA',
     'conférence intelligence artificielle Genève', 'événement blockchain Suisse 2026',
@@ -68,13 +68,13 @@ export const metadata: Metadata = {
     url: BASE,
     siteName: 'NeoTech Forum',
     title: 'NeoTech Forum · Genève 2026 | IA · Blockchain · Transformation Digitale',
-    description: "150 dirigeants et décideurs réunis le 19 septembre 2026 à l'Hôtel Président Wilson, Genève. Conférences IA & Blockchain, cocktail VIP, dîner exclusif. Par EagleChain SA.",
+    description: "Places limitées · Dirigeants, décideurs, experts et investisseurs réunis le 19 septembre 2026 à l'Hôtel Président Wilson, Genève. Conférences IA & Blockchain, cocktail VIP, dîner exclusif. Par EagleChain SA.",
     images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'NeoTech Forum Genève 2026 — IA · Blockchain · Transformation Digitale' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NeoTech Forum · Genève 2026',
-    description: "150 décideurs · IA, Blockchain, Transformation Digitale · Hôtel Président Wilson · 19 septembre 2026 · Par EagleChain SA.",
+    description: "Places limitées · Dirigeants, experts & investisseurs · IA, Blockchain · Hôtel Président Wilson · 19 septembre 2026 · Par EagleChain SA.",
     images: ['/opengraph-image.png'],
     creator: '@neotechforum',
   },
@@ -108,7 +108,7 @@ const eventSchema = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   name: 'NeoTech Forum 2026',
-  description: "Forum premium B2B réunissant 150 décideurs autour de l'IA, la blockchain et la transformation digitale.",
+  description: "Forum premium B2B à places limitées réunissant dirigeants, décideurs, experts et investisseurs autour de l'IA, la blockchain et la transformation digitale.",
   startDate: '2026-09-19T14:00:00+02:00',
   endDate: '2026-09-19T22:00:00+02:00',
   eventStatus: 'https://schema.org/EventScheduled',

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://neotech-forum.ch/reserver' },
   openGraph: {
     title: 'Réservation · NeoTech Forum Genève 2026',
-    description: "Places limitées — 150 décideurs. Précommandez dès maintenant.",
+    description: "Places limitées — Dirigeants, experts, investisseurs. Précommandez dès maintenant.",
     url: 'https://neotech-forum.ch/reserver',
   },
 }

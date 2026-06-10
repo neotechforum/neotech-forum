@@ -105,7 +105,7 @@ export default function ProgrammePage() {
         <div id="prog-cta" style={{ maxWidth: '480px', margin: '0 auto', background: 'rgba(8,14,28,.84)', border: '1px solid rgba(0,170,255,.14)', borderRadius: '4px', padding: 'clamp(2rem,4vw,3rem) 2.5rem', backdropFilter: 'blur(22px)' }}>
           <span style={{ ...label, marginBottom: '1.2rem' }}>Places limitées</span>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: '.92rem', color: 'rgba(255,255,255,.4)', marginBottom: '2rem', lineHeight: 1.72 }}>
-            Rejoignez 150 décideurs pour cette demi-journée d'exception à Genève.
+            Rejoignez dirigeants, experts et investisseurs pour cette demi-journée d'exception à Genève. Places limitées.
           </p>
           <Link href="/contact" style={{ display: 'inline-block', padding: '.9rem 2.4rem', background: GOLD, color: '#080808', fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '.88rem', letterSpacing: '.07em', borderRadius: '2px', textDecoration: 'none' }}>
             Précommander ma place

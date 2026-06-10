@@ -441,7 +441,7 @@ export default function HomePage() {
             </span>
           </div>
           <p ref={heroDesc} style={{ fontFamily: 'var(--font-body,Inter)', fontSize: 'clamp(.9rem,1.5vw,1.08rem)', fontWeight: 300, color: 'rgba(255,255,255,.52)', maxWidth: '40ch', lineHeight: 1.78, margin: '0 0 2.8rem' }}>
-            150 décideurs. Une matinée pour décrypter les technologies qui redéfinissent la finance, l'entreprise et la stratégie.
+            Places limitées. Un événement exclusif pour dirigeants, experts et investisseurs autour des technologies qui redéfinissent la finance, l'entreprise et la stratégie.
           </p>
           <div ref={heroCta} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link href="/contact" style={btnSolid}>Précommander ma place →</Link>
@@ -481,7 +481,7 @@ export default function HomePage() {
               Organisé par EagleChain SA dans l'un des lieux les plus prestigieux de Genève : l'Hôtel Président Wilson, en bord de lac. Un format dense et sans remplissage, au cœur de la capitale de l'innovation financière en Europe.
             </p>
             <div ref={evtStats} style={{ display: 'flex', gap: '2.8rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '2.2rem' }}>
-              {[['150','Décideurs'],['3','Experts'],['½','Journée']].map(([n,l]) => (
+              {[['∞','Places limitées'],['3','Experts'],['½','Journée']].map(([n,l]) => (
                 <div key={l}>
                   <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.4rem,4.5vw,3.2rem)', fontWeight: 300, color: GOLD, margin: '0 0 .3rem', lineHeight: 1 }}>{n}</p>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: '.65rem', color: 'rgba(255,255,255,.28)', letterSpacing: '.16em', textTransform: 'uppercase', margin: 0 }}>{l}</p>
@@ -888,7 +888,7 @@ export default function HomePage() {
             Votre avenir.
           </h2>
           <p ref={ctaDesc} style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(.9rem,1.4vw,1.05rem)', color: 'rgba(255,255,255,.4)', maxWidth: '38ch', margin: '0 auto 3.2rem', lineHeight: 1.82 }}>
-            150 décideurs. Un format d'exception. L'intersection de la finance et de la tech.
+            Places limitées. Un format d'exception pour dirigeants, experts et investisseurs. L'intersection de la finance et de la tech.
           </p>
           <div ref={ctaButtons} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/reserver" style={{ ...btnSolid, padding: '.95rem 2.6rem', fontSize: '.9rem' }}>Réserver ma place →</Link>

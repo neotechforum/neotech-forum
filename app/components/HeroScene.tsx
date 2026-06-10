@@ -527,7 +527,7 @@ export default function HeroScene() {
         <p style={subSty}>Genève · Septembre 2026</p>
         <h1 style={{ ...headSty, marginTop:'.8rem' }}>NeoTech<br />Forum</h1>
         <p style={{ fontFamily:'var(--font-body,Inter)', fontSize:'clamp(.88rem,1.4vw,1.05rem)', fontWeight:300, color:'rgba(255,255,255,.58)', maxWidth:'36ch', lineHeight:1.72, margin:'1.8rem 0 2.5rem' }}>
-          150 décideurs. Une demi-journée pour redéfinir votre trajectoire face aux technologies qui transforment les marchés.
+          places limitées, pour dirigeants, décideurs et experts. Une demi-journée pour redéfinir votre trajectoire face aux technologies qui transforment les marchés.
         </p>
         <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap', pointerEvents:'auto' }}>
           <Link href="/reserver" style={{ padding:'.88rem 2.4rem', background:GOLD, color:'#080808', fontFamily:'var(--font-heading)', fontWeight:600, fontSize:'.9rem', letterSpacing:'.06em', borderRadius:'3px', textDecoration:'none' }}>
@@ -542,7 +542,7 @@ export default function HeroScene() {
       {/* ── S2 overlay — Stats ────────────────────────────────────────── */}
       <div ref={o2} style={base}>
         <p style={{ ...bodySty, fontSize:'clamp(1.3rem,3vw,2.4rem)' }}>
-          150 décideurs.<br />Une demi-journée pour<br />changer de trajectoire.
+          places limitées, pour dirigeants, décideurs et experts.<br />Une demi-journée pour<br />changer de trajectoire.
         </p>
         <div style={{ display:'flex', gap:'3.5rem', marginTop:'4rem', flexWrap:'wrap', justifyContent:'center' }}>
           {[['200','Décideurs'],['3','Experts'],['1','Journée']].map(([n,l]) => (

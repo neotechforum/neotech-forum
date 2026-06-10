@@ -12,7 +12,7 @@ export const translations = {
     hero: {
       title: 'NeoTech Forum',
       location: 'Genève, Septembre 2026',
-      subtitle: '150 décideurs. Une demi-journée pour transformer votre vision en stratégie.',
+      subtitle: 'Places limitées. Une demi-journée pour dirigeants, experts et investisseurs.',
       ctaPrimary: 'Réserver ma place',
       ctaSecondary: 'Voir le programme',
       badge: 'Hosted at Hôtel Métropole Genève ★★★★★',
@@ -25,7 +25,7 @@ export const translations = {
       },
     },
     social: {
-      text: "Suite au succès de l'édition Strasbourg (100 décideurs réunis), NeoTech Forum passe à 150 participants",
+      text: "Suite au succès de l'édition Strasbourg, NeoTech Forum revient à Genève avec une édition exclusive à places limitées",
       hostedBy: 'Organisé par',
     },
     about: {
@@ -225,7 +225,7 @@ export const translations = {
     hero: {
       title: 'NeoTech Forum',
       location: 'Geneva, September 2026',
-      subtitle: '150 decision-makers. Half a day to transform your vision into strategy.',
+      subtitle: 'Limited seats. Half a day for executives, experts and investors.',
       ctaPrimary: 'Reserve my spot',
       ctaSecondary: 'View programme',
       badge: 'Hosted at Hôtel Métropole Genève ★★★★★',
@@ -238,7 +238,7 @@ export const translations = {
       },
     },
     social: {
-      text: 'Following the success of the Strasbourg edition (100 decision-makers gathered), NeoTech Forum scales to 150 participants',
+      text: 'Following the success of the Strasbourg edition, NeoTech Forum returns to Geneva with an exclusive limited-seats edition',
       hostedBy: 'Hosted by',
     },
     about: {
