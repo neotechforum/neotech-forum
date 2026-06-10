@@ -33,6 +33,7 @@ export default function ContactForm() {
   const { t, lang } = useLanguage()
   const c = t.contact
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
   const {
     register,
@@ -47,12 +48,21 @@ export default function ContactForm() {
   const offres = lang === 'fr' ? OFFRES_FR : OFFRES_EN
 
   const onSubmit = async (data: FormValues) => {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
-    if (res.ok) setSubmitted(true)
+    setError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        setError(lang === 'fr' ? 'Une erreur est survenue, réessayez.' : 'An error occurred, please try again.')
+      }
+    } catch {
+      setError(lang === 'fr' ? 'Impossible d\'envoyer, vérifiez votre connexion.' : 'Could not send, check your connection.')
+    }
   }
 
   return (
@@ -204,6 +214,10 @@ export default function ContactForm() {
                 />
                 {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
               </div>
+
+              {error && (
+                <p className="text-red-400 text-sm text-center">{error}</p>
+              )}
 
               <button
                 type="submit"
