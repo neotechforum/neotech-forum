@@ -134,7 +134,7 @@ const eventSchema = {
     { '@type': 'Offer', name: 'Dîner Exclusif', price: '590', priceCurrency: 'CHF', availability: 'https://schema.org/LimitedAvailability', url: 'https://neotech-forum.ch/contact' },
   ],
   performer: [
-    { '@type': 'Person', name: 'Maxime Vidal', jobTitle: 'Lead IA · Yves Saint Laurent' },
+    { '@type': 'Person', name: 'Maxime Vidal', jobTitle: 'Speaker VivaTech' },
     { '@type': 'Person', name: 'Jonathan Oks', jobTitle: 'Expert Blockchain & Marchés Numériques' },
     { '@type': 'Person', name: 'Joseph Mont', jobTitle: 'Fondateur de PIVOIA' },
   ],
@@ -175,7 +175,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Qui sont les intervenants du NeoTech Forum 2026 ?',
-      acceptedAnswer: { '@type': 'Answer', text: "Les intervenants confirmés sont Maxime Vidal (Lead IA chez Yves Saint Laurent, intervenant VivaTech 2025 & 2026), Jonathan Oks (Expert Blockchain & Marchés Numériques) et Joseph Mont (Fondateur de PIVOIA, expert IA en entreprise)." },
+      acceptedAnswer: { '@type': 'Answer', text: "Les intervenants confirmés sont Maxime Vidal (Speaker VivaTech 2025 & 2026), Jonathan Oks (Expert Blockchain & Marchés Numériques) et Joseph Mont (Fondateur de PIVOIA, expert IA en entreprise)." },
     },
     {
       '@type': 'Question',

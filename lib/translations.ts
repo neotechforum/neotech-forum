@@ -81,7 +81,7 @@ export const translations = {
         {
           name: 'Maxime Vidal',
           title: 'Expert IA & Technologie du Virtuel',
-          bio: "Intervenant aux éditions VivaTech 2025 et 2026. Lead IA chez Yves Saint Laurent. Spécialiste en intelligence artificielle appliquée, technologies immersives et transformation digitale du luxe.",
+          bio: "Speaker VivaTech 2025 & 2026. Spécialiste en intelligence artificielle appliquée, automatisation et transformation digitale des entreprises.",
           tags: ['#IA', '#LuxeTech', '#VivaTech'],
         },
         {
@@ -298,7 +298,7 @@ export const translations = {
         {
           name: 'Maxime Vidal',
           title: 'AI & Virtual Technology Expert',
-          bio: 'Speaker at VivaTech 2025 and 2026 editions. AI Lead at Yves Saint Laurent. Specialist in applied artificial intelligence, immersive technologies and digital transformation of luxury.',
+          bio: 'Speaker at VivaTech 2025 & 2026. Specialist in applied artificial intelligence, automation and enterprise digital transformation.',
           tags: ['#AI', '#LuxeTech', '#VivaTech'],
         },
         {

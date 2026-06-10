@@ -632,7 +632,7 @@ export default function HomePage() {
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(2,8,16,.96) 0%,rgba(2,8,16,.18) 55%,transparent 100%)' }} />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2.4rem 2rem 2rem' }}>
                 <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '1.1rem', margin: '0 0 .35rem' }}>Maxime Vidal</p>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '.72rem', color: GOLD, letterSpacing: '.06em', margin: '0 0 .65rem' }}>Lead IA · Yves Saint Laurent</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '.72rem', color: GOLD, letterSpacing: '.06em', margin: '0 0 .65rem' }}>Speaker VivaTech</p>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: '.8rem', color: 'rgba(255,255,255,.5)', lineHeight: 1.65, margin: 0 }}>Expert IA générative &amp; stratégie data. Intervenant VivaTech 2025 &amp; 2026.</p>
               </div>
             </div>

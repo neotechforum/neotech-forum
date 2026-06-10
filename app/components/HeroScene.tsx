@@ -583,7 +583,7 @@ export default function HeroScene() {
               <Image src={P.sp1} alt="Maxime Vidal" fill style={{ objectFit:'cover' }} />
             </div>
             <p style={{ color:'#fff', fontFamily:'var(--font-heading)', fontWeight:600, fontSize:'.92rem', margin:'0 0 .3rem' }}>Maxime Vidal</p>
-            <p style={{ color:CYAN, fontSize:'.72rem', margin:0, lineHeight:1.55 }}>Lead IA · Yves Saint Laurent<br />Expert VivaTech 2025 / 2026</p>
+            <p style={{ color:CYAN, fontSize:'.72rem', margin:0, lineHeight:1.55 }}>Speaker VivaTech<br />Expert VivaTech 2025 / 2026</p>
           </div>
           {/* Card 2 */}
           <div style={card}>
