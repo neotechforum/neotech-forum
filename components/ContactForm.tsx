@@ -8,15 +8,16 @@ import { useLanguage } from '@/context/LanguageContext'
 import { cn } from '@/lib/utils'
 
 const schema = z.object({
-  nom: z.string().min(2),
-  email: z.string().email(),
-  entreprise: z.string().min(2),
-  objet: z.string().min(1),
+  nom: z.string().min(2, 'Requis'),
+  email: z.string().email('Email invalide'),
+  telephone: z.string().min(6, 'Requis'),
+  entreprise: z.string().min(2, 'Requis'),
+  objet: z.string().min(1, 'Requis'),
   offre: z.string().optional(),
   nombrePersonnes: z.string().optional(),
   typeOffreGroupe: z.string().optional(),
   besoins: z.string().optional(),
-  message: z.string().min(5),
+  message: z.string().min(5, 'Minimum 5 caractères'),
 })
 
 type FormValues = z.infer<typeof schema>
@@ -119,25 +120,38 @@ export default function ContactForm() {
           <div className="glass-card rounded-2xl p-8">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
               <div>
-                <label className="text-white/60 text-sm mb-1.5 block">{c.form.nom}</label>
+                <label className="text-white/60 text-sm mb-1.5 block">{c.form.nom} *</label>
                 <input {...register('nom')} placeholder={c.form.nom} className={inputClass} />
                 {errors.nom && <p className="text-red-400 text-xs mt-1">{errors.nom.message}</p>}
               </div>
 
               <div>
-                <label className="text-white/60 text-sm mb-1.5 block">{c.form.email}</label>
+                <label className="text-white/60 text-sm mb-1.5 block">{c.form.email} *</label>
                 <input {...register('email')} type="email" placeholder="vous@entreprise.com" className={inputClass} />
                 {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
               </div>
 
               <div>
-                <label className="text-white/60 text-sm mb-1.5 block">{c.form.entreprise}</label>
+                <label className="text-white/60 text-sm mb-1.5 block">
+                  {lang === 'fr' ? 'Téléphone *' : 'Phone *'}
+                </label>
+                <input
+                  {...register('telephone')}
+                  type="tel"
+                  placeholder="+41 XX XXX XX XX"
+                  className={inputClass}
+                />
+                {errors.telephone && <p className="text-red-400 text-xs mt-1">{errors.telephone.message}</p>}
+              </div>
+
+              <div>
+                <label className="text-white/60 text-sm mb-1.5 block">{c.form.entreprise} *</label>
                 <input {...register('entreprise')} placeholder={c.form.entreprise} className={inputClass} />
                 {errors.entreprise && <p className="text-red-400 text-xs mt-1">{errors.entreprise.message}</p>}
               </div>
 
               <div>
-                <label className="text-white/60 text-sm mb-1.5 block">{c.form.objet}</label>
+                <label className="text-white/60 text-sm mb-1.5 block">{c.form.objet} *</label>
                 <select {...register('objet')} className={cn(inputClass, 'cursor-pointer')}>
                   <option value="" className="bg-[#080808]">— {c.form.objet} —</option>
                   {c.form.objetOptions.map((opt) => (
@@ -205,7 +219,7 @@ export default function ContactForm() {
               )}
 
               <div>
-                <label className="text-white/60 text-sm mb-1.5 block">{c.form.message}</label>
+                <label className="text-white/60 text-sm mb-1.5 block">{c.form.message} *</label>
                 <textarea
                   {...register('message')}
                   rows={4}

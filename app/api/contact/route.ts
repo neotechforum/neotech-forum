@@ -8,9 +8,15 @@ const TO = 'contact@neotech-forum.ch'
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { nom, email, entreprise, objet, message } = body
+    const { nom, email, telephone, entreprise, objet, offre, nombrePersonnes, typeOffreGroupe, besoins, message } = body
 
-    await store.add({ type: 'contact', data: { nom, email, entreprise, objet, message } })
+    const data: Record<string, string> = { nom, email, telephone, entreprise, objet, message }
+    if (offre) data.offre = offre
+    if (nombrePersonnes) data.nombrePersonnes = nombrePersonnes
+    if (typeOffreGroupe) data.typeOffreGroupe = typeOffreGroupe
+    if (besoins) data.besoins = besoins
+
+    await store.add({ type: 'contact', data })
 
     await resend.emails.send({
       from: 'NeoTech Forum <noreply@neotech-forum.ch>',
@@ -22,8 +28,13 @@ export async function POST(req: Request) {
         <table cellpadding="6">
           <tr><td><b>Nom</b></td><td>${nom}</td></tr>
           <tr><td><b>Email</b></td><td>${email}</td></tr>
+          <tr><td><b>Téléphone</b></td><td>${telephone}</td></tr>
           <tr><td><b>Entreprise</b></td><td>${entreprise}</td></tr>
           <tr><td><b>Objet</b></td><td>${objet}</td></tr>
+          ${offre ? `<tr><td><b>Offre</b></td><td>${offre}</td></tr>` : ''}
+          ${nombrePersonnes ? `<tr><td><b>Nb personnes</b></td><td>${nombrePersonnes}</td></tr>` : ''}
+          ${typeOffreGroupe ? `<tr><td><b>Offre groupe</b></td><td>${typeOffreGroupe}</td></tr>` : ''}
+          ${besoins ? `<tr><td><b>Besoins</b></td><td>${besoins}</td></tr>` : ''}
         </table>
         <hr/>
         <p>${message.replace(/\n/g, '<br/>')}</p>
