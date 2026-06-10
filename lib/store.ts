@@ -1,3 +1,5 @@
+import { Redis } from '@upstash/redis'
+
 export type Submission = {
   id: string
   type: 'contact' | 'precommande'
@@ -5,23 +7,28 @@ export type Submission = {
   data: Record<string, string>
 }
 
-declare global {
-  // eslint-disable-next-line no-var
-  var __submissions: Submission[]
-}
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+})
 
-if (!global.__submissions) global.__submissions = []
+const KEY = 'neotech:submissions'
 
 export const store = {
-  add(s: Omit<Submission, 'id' | 'date'>) {
-    global.__submissions.unshift({
+  async add(s: Omit<Submission, 'id' | 'date'>) {
+    const submission: Submission = {
       ...s,
       id: Math.random().toString(36).slice(2),
       date: new Date().toISOString(),
-    })
-    if (global.__submissions.length > 100) global.__submissions.pop()
+    }
+    await redis.lpush(KEY, JSON.stringify(submission))
+    await redis.ltrim(KEY, 0, 199) // garde les 200 derniers
   },
-  getAll(): Submission[] {
-    return global.__submissions
+
+  async getAll(): Promise<Submission[]> {
+    const items = await redis.lrange(KEY, 0, -1)
+    return items.map(item =>
+      typeof item === 'string' ? JSON.parse(item) : item
+    ) as Submission[]
   },
 }

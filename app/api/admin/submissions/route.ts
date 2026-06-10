@@ -7,5 +7,5 @@ export async function GET() {
   if (session?.value !== process.env.ADMIN_SECRET) {
     return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
   }
-  return NextResponse.json(store.getAll())
+  return NextResponse.json(await store.getAll())
 }

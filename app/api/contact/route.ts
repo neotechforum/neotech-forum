@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { nom, email, entreprise, objet, message } = body
 
-    store.add({ type: 'contact', data: { nom, email, entreprise, objet, message } })
+    await store.add({ type: 'contact', data: { nom, email, entreprise, objet, message } })
 
     await resend.emails.send({
       from: 'NeoTech Forum <noreply@neotech-forum.ch>',
